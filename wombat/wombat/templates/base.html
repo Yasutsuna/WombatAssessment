@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{% block title %}Wombat Books: This site is not associated with the Wombat Books Company{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
+    <style>
+.button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+    </style>
+  </head>
+  <body background="https://i.pinimg.com/originals/fe/fa/09/fefa09b1b88354511c09126d06d9da70.jpg">
+    <header>
+      <center><img src='http://wombatbooks.com.au/images/logos/wombat-books-logo.png'></center>
+      {% if user.is_authenticated %}
+      <center><h4>You're signed in as {{ user.username }}.</h4></center>
+      {% else %}
+      <center><h4>Existing users, please <a href="{% url 'login' %}">login</a>. New visitors please <a href="{% url 'signup' %}">signup</a>.
+      Site administrators, login <a href="{% url 'admin:index' %}">here</a></h4></center>
+      {% endif %}
+      <center><button class = "button" onclick="window.location.href = '{% url 'index' %}';">Home</button>
+      <button class = "button" onclick="window.location.href = '{% url 'upload' %}';">Submission</button>
+        {% if user.is_authenticated %}
+      <button class = "button" onclick="window.location.href = '{% url 'logout' %}?next={% url 'login' %}';">Logout</button></center>
+      {% endif %}
+      <hr>
+    </header>
+    <main>
+      {% block content %}
+      {% endblock %}
+    </main>
+  </body>
+</html>

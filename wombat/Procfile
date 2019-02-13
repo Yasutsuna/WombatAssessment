@@ -1,0 +1,1 @@
+web: gunicorn wombat.wsgi --timeout 120

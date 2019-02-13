@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+
+{% load staticfiles %}
+<html>
+	<head>
+		<title>Wombat Books: This site is not associated with the Wombat Books Company</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
+		<noscript><link rel="stylesheet" href="{% static 'assets/css/noscript.css' %}" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<section id="header">
+				<div class="inner">
+					<center><img src='http://wombatbooks.com.au/images/logos/wombat-books-logo.png'></center>
+					<h1>Wombat Books: Stories You Want to Share</a>.</h1>
+					<p>Australian's Children Books.</p>
+					<center><img src='http://wombatbooks.com.au/images/books/jacaranda-snow_med72.jpg' width="250" height="300">
+					<img src='http://wombatbooks.com.au/images/books/oncemed.jpg' width="250" height="300">
+					<img src='http://wombatbooks.com.au/images/books/chronicles-of-klarin_med72.jpg' width="250" height="300"></center>
+					<ul class="actions special">
+						<li><a href="#one" class="button scrolly">Discover</a></li>
+					</ul>
+				</div>
+			</section>
+
+		<!-- One -->
+			<section id="one" class="main style1">
+				<div class="container">
+					<div class="row gtr-150">
+						<div class="col-6 col-12-medium">
+							{% if user.is_authenticated %}
+      						<center><h4>You're signed in as {{ user.username }}.
+								<br>
+								<br>
+							<button onclick="window.location.href = '{% url 'upload' %}';">Submission</button>
+							<button onclick="window.location.href = '{% url 'logout' %}?next={% url 'login' %}';">Logout</button>
+
+								{% if user.is_superuser %}
+								<br><br>
+								<button onclick="window.location.href = 'http://wombatzac.herokuapp.com/admin';">Admin Tools</button>
+								{% endif %}
+							{% else %}
+							<br><br><br>
+							<center>
+							<button onclick="window.location.href = '{% url 'login' %}';">Login</button>
+							<button onclick="window.location.href = '{% url 'signup' %}';">Signup</button>
+							<button onclick="window.location.href = '{% url 'admin:index' %}';">Admin</button>
+							</center>
+							{% endif %}
+													</div>
+						<div class="col-6 col-12-medium imp-medium">
+							<h4>Wombat Books has been sharing stories and creating memories with families since 2009. As an independent publisher, we love to find those unique stories that connect us all.
+
+								We feature children’s picture books and early readers with pages filled with readable and loveable characters. We are always on the lookout for the next story to be shared.</h4>
+						</div>
+					</div>
+				</div>
+			</section>
+
+
+		<!-- Footer -->
+			<section id="footer">
+				<ul class="icons">
+					<li><a href="" class="icon alt fa-twitter"><span class="label">Twitter</span></a></li>
+					<li><a href="" class="icon alt fa-facebook"><span class="label">Facebook</span></a></li>
+					<li><a href="" class="icon alt fa-instagram"><span class="label">Instagram</span></a></li>
+					<li><a href="" class="icon alt fa-github"><span class="label">GitHub</span></a></li>
+					<li><a href="" class="icon alt fa-envelope"><span class="label">Email</span></a></li>
+				</ul>
+			</section>
+
+		<!-- Scripts -->
+			<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+			<script src="{% static 'assets/js/jquery.scrolly.min.js' %}"></script>
+			<script src="{% static 'assets/js/browser.min.js' %}"></script>
+			<script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+			<script src="{% static 'assets/js/util.js' %}"></script>
+			<script src="{% static 'assets/js/main.js' %}"></script>
+
+	</body>
+</html>

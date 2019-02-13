@@ -1,0 +1,7 @@
+Django admin
+admin
+password123
+
+Django users
+test001 - test008
+bigboipassword

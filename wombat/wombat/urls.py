@@ -15,7 +15,26 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls import url, include
+from django.contrib.auth import views as auth_views
+from wombat import views as core_views
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    url(r"^admin/", admin.site.urls, name="admin"),
+    url(r'^$', core_views.home, name='index'),
+    url(r'^signup/$', core_views.signup, name='signup'),
+    url(r'^login/$', auth_views.LoginView.as_view(), {'template_name': 'login.html'}, name='login'),
+    url(r'^logout/$', auth_views.LogoutView.as_view(), {'next_page': 'login'}, name='logout'),
+    url(r'^accounts/login/$', auth_views.LoginView.as_view(), {'template_name': 'login.html'}, name='login'),
+    url(r'^accounts/profile/$', core_views.home, name='home'), #check this
+    # url(r'^submission/$', core_views.submission, name='submission'),
+    url(r'^uploads/$', core_views.UpdateView.upload, name='upload'),
+    # url(r'^list/$', core_views.list, name='list'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

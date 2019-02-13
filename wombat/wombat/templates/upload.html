@@ -1,0 +1,21 @@
+{% extends 'base2.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  <h4>Upload file cannot exceed 100MB and must be in .pdf, .doc or .docx format. Do not close the window and allow the upload to proceed.</h4>
+  <form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Upload</button>
+  </form>
+
+  <p><a href="{% url 'home' %}">Return to home</a></p>
+
+{% else %}
+<meta http-equiv="refresh" content="2; URL={% url 'login' %}">
+<meta name="keywords" content="automatic redirection">
+<h3>You'll be redirected to the login page in a few seconds...</h3>
+<h4>If this doesn't work, please choose an option above.</h4>
+
+{% endif %}
+{% endblock %}

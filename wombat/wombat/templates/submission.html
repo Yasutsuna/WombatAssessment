@@ -1,0 +1,26 @@
+<!-- Not Used Anymore -->
+
+{% extends 'base2.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<h2>Create a submission </h2>
+<form action="" method="POST">
+
+Title of the book: <input type="text" name="book_title"/><br/>
+Description: <br/>
+<textarea cols="35" rows="8" name="description">
+</textarea><br/>
+    <h3>All fields are required.</h3>
+<input type="submit" value="Next"/>
+</form>
+
+{% else %}
+<meta http-equiv="refresh" content="2; URL={% url 'login' %}">
+<meta name="keywords" content="automatic redirection">
+<h3>You'll be redirected to the login page in a few seconds...</h3>
+<h4>If this doesn't work, please choose an option above.</h4>
+
+{% endif %}
+
+{% endblock %}

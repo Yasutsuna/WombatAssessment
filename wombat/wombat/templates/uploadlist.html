@@ -1,0 +1,21 @@
+<!-- Not Used Anymore -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if user.is_superuser %}
+<a href="{{ obj.document.url }}">{{ obj.document.name }}</a>
+<h2><p>Uploaded files:</p></h2>
+  <ul>
+    {% for obj in documents %}
+      <li>
+        <a href="{{ obj.document.url }}">{{ obj.document.name }}</a>
+        <small>(Uploaded at: {{ obj.uploaded_at }})</small>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+<h3>You don't have enough priviledge to access this page. Please login in as an administrator first.</h3>
+{% endif %}
+{% endblock %}
